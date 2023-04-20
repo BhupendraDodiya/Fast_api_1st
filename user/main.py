@@ -1,15 +1,13 @@
 from fastapi import FastAPI
-from app import router as UsersRoute
 from app import api as UsersAPI
 from tortoise.contrib.fastapi import register_tortoise
 
 app = FastAPI() 
-app.include_router(UsersRoute.router)
 app.include_router(UsersAPI.app,tags=["api"])
 
-# @app.get("/")
-# def read_root():
-#     return{"hello":"world"}
+@app.get("/")
+def home():
+    return {"USER API"}
 
 register_tortoise(
     app,
